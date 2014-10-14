@@ -14,5 +14,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap.min
-//= require bootstrapValidator.min.js
 //= require_tree .

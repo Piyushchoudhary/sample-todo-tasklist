@@ -34,13 +34,16 @@
 					$('#task-add-error').addClass('success-msg center').fadeIn('slow');
 		      $('.loading-icon').hide();
 		      $('.add-task-btn').attr('disabled', false);
-					// $.ajax({
-// 					  url: '/email_accounts/' + JSON.stringify(data.id.$oid).replace(/["]/g,"") + '/email_listing',
-// 					  success: function(data){
-// 					  	$('table#email-listing').append(data);
-// 					  },
-// 					});
-		    },
+					$.ajax({
+					  url: '/tasks?listing=true',
+						type: "GET",
+					  success: function(data){
+					  	$('#task-listing').html(data);
+					  },
+						error: function(data){
+						}
+					});
+				},
 		    error: function(data) {
 		      $('#task-add-error').text('Task ' + JSON.stringify(data.responseJSON.error.title[0]).replace(/["]/g,""));
 					if($('#task-add-error').hasClass('success-msg'))

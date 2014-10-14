@@ -3,6 +3,11 @@ class TasksController < ApplicationController
   
   def index
     @tasks = current_user.tasks.page(params[:page]||1).per(10)
+    respond_to do |format|
+      format.html {
+        render :partial => "/tasks/task_listing" if params[:listing].present?
+      }
+    end
   end
   
   def create

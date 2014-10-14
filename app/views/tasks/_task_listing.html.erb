@@ -1,0 +1,21 @@
+<table class="table table-striped table-hover">
+	<thead>
+    <tr>
+      <th class="center">Sl #</th>
+      <th class="center">Task</th>
+      <th class="center">Status</th>
+      <th class="center">Mark Completed</th>
+    </tr>
+  </thead>
+  <% if @tasks.present? %>
+		<%= render partial: '/tasks/task', collection: @tasks, as: :task %>
+	<% else %>
+		<tr>
+			<td colspan="4">
+				<p class="center">
+					<p class="center">You don't own any tasks.</p>
+				</p>
+			</td>
+		</tr>
+	<% end%>
+</table>

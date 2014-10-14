@@ -32,6 +32,11 @@ end
 
 gem 'mongoid'
 gem 'devise'
+gem 'bootstrap_form'
+gem "font-awesome-rails"
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

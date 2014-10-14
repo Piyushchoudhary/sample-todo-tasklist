@@ -1,0 +1,18 @@
+<tr id="task-<%=task.id%>">
+  <td>
+		<%= task_counter + 1 %>
+	</td>
+  <td>
+		<%= task.title %>
+	</td>
+  <td>
+		<a href="javascript:void(0);" class="btn btn-xs btn-info"><%= task.completed? ? "Completed" : "Pending" %></a>
+	</td>
+	<td>
+		<% if task.completed? %>
+			<%= link_to "<i class='fa fa-check-square-o'></i>".html_safe, "javascript:void(0)", class: "text-center mark-link-#{task.id}", title: "Completed" %>
+		<% else %>
+			<%= link_to "<i class='fa fa-square-o'></i>".html_safe, task_path(task), class: "text-center mark-link-#{task.id}", remote: true, title: "Mark Completed", method: :put %>
+		<% end %>
+	</td>
+</tr>

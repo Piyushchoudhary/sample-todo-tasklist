@@ -1,0 +1,56 @@
+<div class="row">
+	<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+		<div class="row">
+			<div class="border-form-div-large" style="margin-bottom:0px;">
+				<div id="task-add-error"></div>
+		    <%= bootstrap_form_for(Task.new, :url => tasks_path, layout: :inline, :html => { :method => :post, class: "center", id: "add-task-form" }) do |f| %>
+			    <%= f.text_field :title, placeholder: 'To do..' , hide_label: true, class: "inline-field input-large" %>
+					<%= f.submit "Add Task", class: 'btn btn-sm btn-primary add-task-btn' %>
+					<i class="fa fa-refresh fa-spin loading-icon" style="display:none;"></i>
+		    <% end %> 
+				<!-- <p class="center">
+					<small>
+						Add tasks here.
+					</small>
+				</p> -->
+			</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#add-task-form').submit(function() {
+		  $('.add-task-btn').attr('disabled', true)
+		  $('.loading-icon').show();
+			$.ajax({
+				type: "POST",
+				url: $(this).attr('action'),
+				data: $(this).serialize(),
+				dataType: "json",
+		    success: function(data) {
+		      $('#task-add-error').html('Task added successfully.');
+					if($('#task-add-error').hasClass('error'))
+						$('#task-add-error').removeClass('error center')
+					$('#task-add-error').addClass('success-msg center').fadeIn('slow');
+		      $('.loading-icon').hide();
+		      $('.add-task-btn').attr('disabled', false);
+					// $.ajax({
+// 					  url: '/email_accounts/' + JSON.stringify(data.id.$oid).replace(/["]/g,"") + '/email_listing',
+// 					  success: function(data){
+// 					  	$('table#email-listing').append(data);
+// 					  },
+// 					});
+		    },
+		    error: function(data) {
+		      $('#task-add-error').text('Task ' + JSON.stringify(data.responseJSON.error.title[0]).replace(/["]/g,""));
+					if($('#task-add-error').hasClass('success-msg'))
+						$('#task-add-error').removeClass('success-msg center')
+					$('#task-add-error').addClass('error center').fadeIn('slow');
+		      $('.loading-icon').hide()
+		      $('.add-task-btn').attr('disabled', false)
+		    }
+			})
+		  return false;
+		});
+	});
+</script>

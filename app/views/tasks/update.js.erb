@@ -1,0 +1,7 @@
+<% if @task.errors.blank? %>
+	$("#task-<%=@task.id%>").children('td:eq(2)').children('a').text('Completed')
+	$("#task-<%=@task.id%>").children('td:eq(3)').children('a').children('i').removeClass('fa-square-o').addClass('fa-check-square-o');
+	$("#task-<%=@task.id%>").children('td:eq(3)').children('a').attr('href', 'javascript:void(0);');
+<% else %>
+	// $('#comments-error').fadeIn('slow').delay(3000).fadeOut('slow');
+<% end %>

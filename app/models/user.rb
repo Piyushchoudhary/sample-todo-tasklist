@@ -29,8 +29,8 @@ class User
   field :last_sign_in_ip,    type: String
   
   # custom fields
-  field :first_name,         type: String
-  field :last_name,          type: String
+  field :first_name,         type: String, default: ''
+  field :last_name,          type: String, default: ''
   field :created_at, type: DateTime, default: DateTime.now
   field :updated_at, type: DateTime, default: DateTime.now       
   
@@ -51,5 +51,8 @@ class User
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, uniqueness: true
+  
+  ## Associations
+  has_many  :tasks,         dependent: :destroy
   
 end

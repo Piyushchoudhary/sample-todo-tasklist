@@ -13,6 +13,8 @@ To run the application in your machibe perform following steps:
 
 * Download the application and go to the root foloder of the application.
 
+* Make sure mongodb is up and running.
+
 * run 'bundle install' to install all the required gems for the application.
 
 * run 'rails s' to the the server after all dependecies are installed.
